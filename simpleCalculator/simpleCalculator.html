@@ -1,0 +1,51 @@
+<template>
+    <lightning-card title="Simple Calculator" icon-name="utility:formula">
+        <lightning-layout multiple-rows="true">
+            <lightning-layout-item size="12" padding="around-small">
+                <lightning-input type="number" name="FirstNumber" label="Enter First Number"
+                    onchange={calculatorInput}></lightning-input>
+                <lightning-input type="number" name="SecondNumber" label="Enter Second Number"
+                    onchange={calculatorInput}></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item size="12" padding="around-small">
+                <lightning-button-group>
+                    <lightning-button label="Add" name="Add" icon-name="utility:add" icon-position="right"
+                        onclick={doAdd}></lightning-button>
+                    <lightning-button label="Sub" icon-name="utility:dash" icon-position="right"
+                        onclick={doSub}></lightning-button>
+                    <lightning-button label="Mul" icon-name="" onclick={doMul}></lightning-button>
+                    <lightning-button label="Div" icon-name="" onclick={doDiv}></lightning-button>
+                </lightning-button-group>
+            </lightning-layout-item>
+            <lightning-layout-item size="12" padding="around-small">
+                <div>
+                    <h2>Result:</h2>
+                    <h4>{result}</h4>
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item size="12" padding="around-small">
+
+                <lightning-input type="checkbox" label="Show Last Results"
+                    onchange={showCalculatorHistory}></lightning-input>
+                <div if:true={showResultHistory}>
+                    <lightning-layout>
+                        <lightning-layout-item size="4">
+                            <div style="font:bold; font-size:20px; padding:10px;">History:</div>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="8">
+                            <lightning-button-icon icon-name="utility:delete" alternative-text="Delete"
+                                class="slds-m-left_xx-small" title="Delete"
+                                onclick={clearArray}></lightning-button-icon>
+                        </lightning-layout-item>
+                    </lightning-layout>
+
+
+                    <template iterator:it={arrayOfHistory}>
+                        <div key={it.value} style="padding-top: 5px;">{it.value}</div>
+                    </template>
+                </div>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+
+</template>
